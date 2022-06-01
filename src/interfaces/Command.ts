@@ -1,9 +1,13 @@
-import { ChatInputApplicationCommandData, CommandInteraction, PermissionResolvable, Locale } from "discord.js";
+import { ChatInputApplicationCommandData, CommandInteraction, PermissionResolvable, Locale, GuildMember } from "discord.js";
 import { Client } from "../structures/Client";
+
+export interface ExtendedInteraction extends CommandInteraction {
+    member: GuildMember;
+}
 
 interface RunOptions {
     client: Client,
-    interaction: CommandInteraction
+    interaction: ExtendedInteraction;
 }
 
 type RunFunction = (options: RunOptions) => any;
