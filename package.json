@@ -1,0 +1,34 @@
+{
+  "name": "canty",
+  "version": "1.0.0",
+  "description": "🐱 Meow! I'm Canty! Discord's Space Kitten! ",
+  "main": "canty.js",
+  "scripts": {
+    "build": "tsc",
+    "canty": "nodemon",
+    "production": "yarn build && node ./dist/canty.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cantythecat/bot.git"
+  },
+  "keywords": [
+    "canty",
+    "cantybot"
+  ],
+  "author": "PugT",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/cantythecat/bot/issues"
+  },
+  "homepage": "https://github.com/cantythecat/bot#readme",
+  "dependencies": {
+    "discord.js": "^14.0.0-dev.1653091711-fdeac9d",
+    "ts-node": "^10.8.0",
+    "typescript": "^4.7.2"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.35",
+    "nodemon": "^2.0.16"
+  }
+}

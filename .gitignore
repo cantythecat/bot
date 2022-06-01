@@ -1,0 +1,9 @@
+Typings
+dist
+
+# Node Modules and Lock file
+node_modules
+yarn.lock
+
+# Config File (Canty's Token, Database, etc...)
+config.json
