@@ -3,7 +3,11 @@ import { Event } from "./Event";
 import { CommandType } from "../interfaces/Command";
 import glob from "glob";
 import { promisify } from "util";
-import { RegisterCommandsOptions } from "../interfaces/client";
+
+interface RegisterCommandsOptions {
+    guildId?: string;
+    commands: ApplicationCommandDataResolvable[];
+}
 
 const globPromise = promisify(glob);
 
@@ -32,7 +36,7 @@ class Client extends DiscordClient {
             this.application.commands.set(commands);
             console.log('Registered GLOBAL commands.');
         }
-    }
+    }   
 
     async registerModules() {
         // Commands
