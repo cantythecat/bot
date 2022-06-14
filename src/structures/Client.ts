@@ -3,6 +3,7 @@ import { Event } from "./Event";
 import { CommandType } from "../interfaces/Command";
 import glob from "glob";
 import { promisify } from "util";
+import { importFile } from "../api/importFiles";
 
 interface RegisterCommandsOptions {
     guildId?: string;
@@ -17,10 +18,6 @@ class Client extends DiscordClient {
 
     public constructor(options: ClientOptions) {
         super(options);
-    }
-
-    async importFile(filePath: string) {
-        return (await import(filePath))?.default;
     }
 
     start(token: string) {
@@ -44,7 +41,7 @@ class Client extends DiscordClient {
         const commandFiles = await globPromise(`${__dirname}/../commands/*/*{.ts,.js}`);
     
         commandFiles.forEach(async (filePath) => {
-            const command: CommandType = await this.importFile(filePath);
+            const command: CommandType = await importFile(filePath);
             if (!command.name) return;
     
             this.commands.set(command.name, command);
@@ -61,7 +58,7 @@ class Client extends DiscordClient {
         const eventFiles = await globPromise(`${__dirname}/../events/*{.ts,.js}`);
     
         eventFiles.forEach(async (filePath) => {
-            const event: Event<keyof ClientEvents> = await this.importFile(filePath);
+            const event: Event<keyof ClientEvents> = await importFile(filePath);
             this.on(event.event, event.run)
         });
     }
